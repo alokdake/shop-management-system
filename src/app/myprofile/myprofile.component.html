@@ -1,0 +1,114 @@
+<div style="text-align: -webkit-center">
+  <div
+    style="
+      border: 2px solid orange;
+      width: 601px;
+      height: 500px;
+      padding: 20px;
+      border-radius: 30px;
+      text-align: center;
+      position: relative;
+      text-align: -webkit-center;
+    "
+  >
+    <h1><b>My Profile</b></h1>
+    <div  (click)="openDialog(userData)"
+    style="width: 200px; height: 200px" *ngIf="userData">
+      <img
+
+        style="
+          object-fit: cover;
+          width: 200px;
+          margin-left: -314px;
+          margin-top: 13px;
+          height: 200px;
+          cursor: pointer;
+        "
+        class="card-img-top"
+        src="{{ userData.profilePic }}"
+      />
+    </div>
+    <br />
+    <div>
+      <div style="margin-top: -219px" *ngIf="userData">
+        <div style="margin-left: 280px">
+          <div
+            style="
+              text-align: initial;
+              margin-left: 30px;
+              font-size: larger;
+              margin-top: 12px;
+            "
+          >
+            <p>
+              <b>{{ userData.fname }} {{ userData.lname }}</b>
+            </p>
+            <br />
+            <p>
+              <a href="mailto:{{ userData.email }}"> {{ userData.email }}</a>
+            </p>
+            <br />
+            <p>{{ userData.phoneno }}</p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+    <br />
+
+    <div>
+      <div style="display: flex; margin-left: 300px">
+        <div *ngIf="userData"></div>
+      </div>
+      <div
+        style="position: relative; bottom: -30px; right: 160px"
+        *ngIf="userData"
+      >
+        <div style="margin-left: 50%; display: flex">
+          <div>
+            <h2>
+              <b><u>Address</u></b>
+            </h2>
+
+            <p
+              style="
+                padding: 10px;
+                border: 2px solid rgb(0, 0, 0);
+                margin: 0;
+
+                width: 150px;
+                height: 119px;
+                padding: 10px;
+                overflow: auto;
+                border-radius: 15px;
+              "
+            >
+              {{ userData.Address }}
+            </p>
+          </div>
+          <div>
+            <h2>
+              <b><u>Information</u></b>
+            </h2>
+
+            <p
+              style="
+                padding: 10px;
+                border: 2px solid rgb(0, 0, 0);
+                margin-left: 25px;
+
+                width: 150px;
+                height: 119px;
+                padding: 10px;
+                overflow: auto;
+                border-radius: 15px;
+              "
+            >
+              {{ userData.info }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,131 @@
+<!-- <link
+  rel="stylesheet"
+  href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+  integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+  crossorigin="anonymous"
+/> -->
+
+<nav
+  style="background-color: rgb(255, 255, 255)"
+  class="navbar navbar-expand-lg navbar-dark"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand"
+      ><img
+        style="
+          width: 55px;
+          border-radius: 50px;
+          height: 55px;
+          display: block;
+          margin: -28px auto;
+          position: absolute;
+        "
+        id="logo"
+        src="../assets/Img/logo.png"
+    /></a>
+    <button
+      style="background-color: black"
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <!-- ml-auto still works just fine-->
+      <div class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a
+            routerLink="/homePage"
+            style="font-family: cursive"
+            class="btn btn-light"
+            aria-current="page"
+            >Home</a
+          >
+        </li>
+        <li>
+          <button
+            routerLink="/aboutus"
+            style="font-family: cursive"
+            type="button"
+            class="btn btn-light"
+          >
+            About Us
+          </button>
+        </li>
+        <li style="margin-right: 16px">
+          <button
+            style="font-family: cursive"
+            type="button"
+            class="btn btn-light"
+            (click)="sellMyProduct()"
+          >
+            Sell My Product
+          </button>
+        </li>
+
+        <li style="margin-right: 25px">
+          <img
+            *ngIf="profilePicture && userdata"
+            mat-button
+            [matMenuTriggerFor]="menu"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: block;
+              margin: 0px auto;
+            "
+            src="{{ profilePicture }}"
+          />
+          <img
+            *ngIf="!profilePicture && userdata"
+            mat-button
+            [matMenuTriggerFor]="menu"
+            style="
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              display: block;
+              margin: 0px auto;
+              margin-right: -20px;
+            "
+            src="../assets/Img/profile.png"
+          />
+
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item>Hello {{ userdata.fname }} !!</button>
+            <button routerLink="/myprofile" mat-menu-item>MyProfile</button>
+            <button routerLink="/viewallusers" mat-menu-item>View Users</button>
+            <button (click)="userlogout()" mat-menu-item>Logout</button>
+          </mat-menu>
+        </li>
+        <li style="margin-right: 70px; margin-left: -30px" *ngIf="!userdata">
+          <img
+            mat-button
+            [matMenuTriggerFor]="option"
+            style="
+              margin-right: -20px;
+              width: 50px;
+              height: 50px;
+              display: block;
+              margin: -6px auto;
+              position: fixed;
+            "
+            src="../assets/Img/withoutdp.jpg"
+          />
+          <mat-menu #option="matMenu">
+            <button (click)="userlogin()" mat-menu-item>Login</button>
+            <button (click)="userregister()" mat-menu-item>Register</button>
+          </mat-menu>
+        </li>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

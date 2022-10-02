@@ -1,0 +1,194 @@
+<div class="container register-form">
+  <div style="text-align: -webkit-center" class="form">
+    <!-- <div
+        style="
+          border: 2px solid #cfb913;
+          padding: 20px;
+          border-radius: 20px;
+          width: 100%;
+          position: relative;
+          margin-top: 50px;
+          text-align: center;
+        "
+        class="ro"
+      >
+
+      </div> -->
+
+    <div
+      class="registerContents"
+      style="
+        border: 2px solid orange;
+        width: 330px;
+        padding: 20px;
+        border-radius: 30px;
+        text-align: center;
+        position: relative;
+      "
+    >
+      <h2>Registration Form</h2>
+
+      <div style="text-align: center">
+        <div *ngIf="message">
+          {{ message }}
+        </div>
+        <div>
+          <img
+            style="
+              height: 80px;
+              width: 80px;
+              border-radius: 50%;
+              border: 4px solid rgb(0, 0, 0);
+            "
+            [src]="profilePic"
+            *ngIf="profilePic"
+          />
+        </div>
+        <div>
+          <label class="file">
+            <input
+              type="file"
+              id="file"
+              (change)="selectFile($event)"
+              aria-label="File browser example"
+            />
+            <span class="file-custom"></span>
+          </label>
+        </div>
+      </div>
+      <form [formGroup]="RegisterForm">
+        <div class="col-md-6">
+          <div>
+            <div style="margin-left: 15px" class="form-group">
+              <input
+                [(ngModel)]="fname"
+                type="text"
+                formControlName="fname"
+                class="form-control"
+                placeholder="Your First Name *"
+              />
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="lname"
+                  type="text"
+                  formControlName="lname"
+                  class="form-control"
+                  placeholder="Your Last Name *"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  [(ngModel)]="email"
+                  type="text"
+                  formControlName="email"
+                  class="form-control"
+                  placeholder="Enter Your Email *"
+                />
+              </div>
+              <div class="form-group">
+                <div
+                  *ngIf="
+                    RegisterForm.controls['email'].invalid &&
+                    (RegisterForm.controls['email'].dirty ||
+                      RegisterForm.controls['email'].touched)
+                  "
+                  class="alert alert-danger"
+                >
+                  Email Address is required.
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input
+                  [(ngModel)]="password"
+                  type="password"
+                  formControlName="password"
+                  class="form-control"
+                  placeholder="Your Password *"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  [(ngModel)]="conformPassword"
+                  type="password"
+                  formControlName="conformPassword"
+                  class="form-control"
+                  placeholder="Confirm Password *"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  [(ngModel)]="info"
+                  type="text"
+                  formControlName="info"
+                  class="form-control"
+                  placeholder="Enter Your Info *"
+                />
+              </div>
+
+              <div class="form-group">
+                <input
+                  [(ngModel)]="phoneno"
+                  type="text"
+                  formControlName="phoneno"
+                  class="form-control"
+                  placeholder="Enter Your Phone Number *"
+                />
+              </div>
+
+              <div class="form-group">
+                <!-- <input
+                  [(ngModel)]="Address"
+                  type="text"
+                  formControlName="Address"
+                  class="form-control"
+                  placeholder="Enter Your Address *"
+                /> -->
+                <textarea
+                  [(ngModel)]="Address"
+                  style="width: 200px; border: 2px solid rgb(250, 230, 50)"
+                  formControlName="Address"
+                  id="w3review"
+                  name="w3review"
+                  rows="4"
+                  cols="50"
+                  placeholder="Enter Your Address *"
+                ></textarea>
+              </div>
+            </div>
+            <div style="margin-left: 50px; display: inline-flex">
+              <div style="display: inline-flex; margin-left: -15px">
+                <button
+                  [disabled]="!RegisterForm"
+                  style="margin-right: 16px"
+                  (click)="submitform()"
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Submit
+                </button>
+                <br />
+                <br />
+                <button
+                  style="margin-right: 16px"
+                  (click)="loginform()"
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

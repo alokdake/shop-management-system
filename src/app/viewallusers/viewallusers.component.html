@@ -1,0 +1,27 @@
+<div class="container">
+  <div style="padding: 10px" class="row">
+    <div
+      *ngFor="let item of UsersData"
+      class="card"
+      style="width: 18rem; margin-left: 20px; margin-top: 20px"
+    >
+      <div class="card-body">
+        <img
+          style="object-fit: cover"
+          class="card-img-top"
+          src="{{ item.profilePic }}"
+          alt="Card image cap"
+        />
+
+        <div class="card-body">
+          <h2 class="card-title">
+            <b>{{ item.fname }} {{ item.lname }}</b>
+          </h2>
+          <div>
+            <a (click)="viewDetails(item)" class="btn btn-primary">View</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

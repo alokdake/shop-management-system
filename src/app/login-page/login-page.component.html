@@ -1,0 +1,84 @@
+<div class="container register-form">
+  <div style="text-align: -webkit-center" class="form">
+    <form [formGroup]="loginForm">
+      <div
+        class="registerContents"
+        style="
+          border: 2px solid orange;
+          width: 330px;
+          padding: 20px;
+          border-radius: 30px;
+          text-align: center;
+          position: relative;
+        "
+      >
+        <h2>Login</h2>
+        <div style="margin-top: 20px">
+          <input
+            class="form-control"
+            [(ngModel)]="email"
+            type="email"
+            formControlName="email"
+            placeholder="Enter Your email"
+            required
+          />
+        </div>
+
+        <br />
+
+        <div>
+          <input
+            class="form-control"
+            [(ngModel)]="password"
+            type="password"
+            formControlName="password"
+            placeholder="Enter Your password"
+          />
+        </div>
+        <br />
+        <div style="display: flex; margin-left: 50px">
+          <button
+            style="margin-right: 16px"
+            (click)="submitForm()"
+            type="button"
+            class="btn btn-warning"
+          >
+            submit
+          </button>
+          <div>
+            <button
+              style="margin-right: 16px"
+              (click)="register()"
+              type="button"
+              class="btn btn-warning"
+            >
+              register
+            </button>
+          </div>
+        </div>
+        <br />
+        <br />
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div *ngIf="noResultReturned" class="img-div-left">
+  <img
+    alt="loading spinner"
+    onContextMenu="return false;"
+    class="spinner-global img-fluid"
+    style="width: 100px; height: 100px; display: block; margin: 0px auto"
+    src="../assets/Img/load.gif"
+  />
+</div> -->
+
+<!-- <div *ngIf="noResultReturned" class="img-div-left">
+  <img
+    alt="loading spinner"
+    onContextMenu="return false;"
+    class="spinner-global img-fluid"
+    style="width: 100px; height: 100px; display: block; margin: 0px auto"
+    src="../assets/Img/loader.gif"
+  />
+</div> -->

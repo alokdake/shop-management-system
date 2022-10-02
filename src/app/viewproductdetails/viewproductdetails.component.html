@@ -1,0 +1,130 @@
+<div style="text-align: -webkit-center">
+  <div
+    style="
+      border: 2px solid orange;
+      width: 601px;
+      height: 500px;
+      padding: 20px;
+      border-radius: 30px;
+      text-align: center;
+      position: relative;
+      text-align: -webkit-center;
+    "
+  >
+    <div style="width: 200px; height: 200px" *ngIf="shopSeeData">
+      <img
+        style="
+          object-fit: cover;
+          width: 200px;
+          margin-left: -314px;
+          margin-top: 13px;
+          height: 200px;
+        "
+        class="card-img-top"
+        src="{{ shopSeeData.profilePic }}"
+      />
+    </div>
+    <br />
+    <div>
+      <div style="margin-top: -219px" *ngIf="shopSeeData">
+        <div style="margin-left: 280px">
+          <div
+            style="
+              text-align: initial;
+              margin-left: 30px;
+              font-size: larger;
+              margin-top: 12px;
+            "
+          >
+            <p>
+              <b>{{ shopSeeData.fname }} {{ shopSeeData.lname }}</b>
+            </p>
+            <br />
+            <p>{{ shopSeeData.email }}</p>
+            <br />
+            <p>{{ shopSeeData.phoneno }}</p>
+          </div>
+        </div>
+        <br />
+      </div>
+    </div>
+    <br />
+
+    <div>
+      <div style="display: flex; margin-left: 300px">
+        <div *ngIf="shopSeeData">
+          <button
+            style="margin-left: 7px; cursor: none"
+            type="button"
+            class="btn btn-warning"
+          >
+            {{ shopSeeData.Productcategory }}
+          </button>
+        </div>
+        <button
+          style="margin-left: 15px"
+          (click)="byeProduct()"
+          type="button"
+          class="btn btn-warning"
+        >
+          Buy Product
+        </button>
+      </div>
+
+      <div style="display: flex">
+        <div style="position: relative; display: flex" *ngIf="shopSeeData">
+          <div>
+            <h2>
+              <b><u>Product Name</u></b>
+            </h2>
+            <p
+              style="
+                padding: 10px;
+                border: 2px solid rgb(0, 0, 0);
+                margin-left: 25px;
+
+                width: 150px;
+                height: 50px;
+                padding: 10px;
+                overflow: auto;
+                border-radius: 15px;
+              "
+            >
+              <b>{{ shopSeeData.Productname }}</b>
+            </p>
+          </div>
+          <br />
+        </div>
+        <div>
+          <div style="margin-left: 230px; margin-top: 40px" *ngIf="shopSeeData">
+            <p>{{ shopSeeData.date }}</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div>
+          <h2 style="margin-left: 10px; margin-top: -50px">
+            <u><b>Description</b></u>
+          </h2>
+        </div>
+        <div>
+          <p
+            style="
+              padding: 10px;
+              border: 2px solid rgb(0, 0, 0);
+              margin-left: 5px;
+
+              width: 500px;
+              height: 100px;
+              padding: 10px;
+              overflow: auto;
+              border-radius: 5px;
+            "
+          >
+            {{ shopSeeData.Productdescription }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

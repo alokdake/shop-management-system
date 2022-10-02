@@ -1,0 +1,332 @@
+<div class="container register-form">
+  <div style="text-align: -webkit-center" class="form">
+    <form [formGroup]="sellForm">
+      <!-- <div
+        style="
+          border: 2px solid #cfb913;
+          padding: 20px;
+          border-radius: 20px;
+          width: 100%;
+          position: relative;
+          margin-top: 50px;
+          text-align: center;
+        "
+        class="ro"
+      >
+
+      </div> -->
+
+      <div
+        class="registerContents"
+        style="
+          border: 2px solid orange;
+          width: 330px;
+          padding: 20px;
+          border-radius: 30px;
+          text-align: center;
+          position: relative;
+        "
+      >
+        <h4 style="font-size: 20px">Enter Personal Information</h4>
+        <hr
+          style="
+            height: 2px;
+            border-width: 0;
+            color: #000000;
+            background-color: rgb(0, 0, 0);
+          "
+        />
+
+        <div style="text-align: center">
+          <div></div>
+          <!-- <div>
+            <img
+              style="
+                height: 80px;
+                width: 80px;
+                border-radius: 50%;
+                border: 4px solid yellow;
+              "
+              [src]="profilePic"
+              *ngIf="profilePic"
+            />
+          </div> -->
+          <!-- <div>
+            <label class="file">
+              <input
+                type="file"
+                id="file"
+                (change)="selectFile($event)"
+                aria-label="File browser example"
+              />
+              <span class="file-custom"></span>
+            </label>
+          </div> -->
+        </div>
+
+        <div style="margin-top: 20px; width: 100%" class="col-md-6">
+          <div class="form-group" style="border-radius: 50px; width: 260px">
+            <input
+              style="border: 2px solid rgb(250, 230, 50)"
+              [(ngModel)]="fname"
+              type="text"
+              formControlName="fname"
+              class="form-control"
+              placeholder="Your First Name *"
+            />
+          </div>
+
+          <div style="margin-top: 20px; width: 260px">
+            <div class="form-group">
+              <input
+                style="border: 2px solid rgb(250, 230, 50)"
+                [(ngModel)]="lname"
+                type="text"
+                formControlName="lname"
+                class="form-control"
+                placeholder="Your Last Name *"
+              />
+            </div>
+            <br />
+            <div class="form-group">
+              <input
+                style="border: 2px solid rgb(250, 230, 50)"
+                [(ngModel)]="email"
+                type="text"
+                formControlName="email"
+                class="form-control"
+                placeholder="Enter Your Email *"
+              />
+            </div>
+            <br />
+          </div>
+          <div>
+            <div style="width: 260px" class="form-group">
+              <input
+                style="border: 2px solid rgb(250, 230, 50)"
+                [(ngModel)]="phoneno"
+                type="text"
+                formControlName="phoneno"
+                class="form-control"
+                placeholder="Enter Your Phone Number *"
+              />
+            </div>
+            <br />
+            <div style="width: 260px" class="form-group">
+              <textarea
+                [(ngModel)]="Address"
+                style="width: 100%; border: 2px solid rgb(250, 230, 50)"
+                formControlName="Address"
+                id="w3review"
+                name="w3review"
+                rows="4"
+                cols="50"
+                placeholder="Enter Your Address *"
+              ></textarea>
+            </div>
+            <br />
+            <hr
+              style="
+                width: 260px;
+                height: 2px;
+                border-width: 0;
+                color: rgb(0, 0, 0);
+                background-color: rgb(0, 0, 0);
+              "
+            />
+            <h4 style="font-size: 20px; width: 260px">Enter Product Details</h4>
+            <hr
+              style="
+                width: 260px;
+                height: 2px;
+                border-width: 0;
+                color: rgb(0, 0, 0);
+                background-color: rgb(0, 0, 0);
+              "
+            />
+            <br />
+            <div style="text-align: center; width: 260px">
+              <div *ngIf="message">
+                {{ message }}
+              </div>
+              <div>
+                <img
+                  (change)="selectFile($event)"
+                  style="
+                    height: 80px;
+                    width: 80px;
+                    margin-top: -20px;
+                    cursor: pointer;
+                  "
+                  type="file"
+                  id="file"
+                  src="../assets/Img/camera.png"
+                  *ngIf="!profilePic"
+                />
+              </div>
+              <div>
+                <img
+                  style="
+                    height: 80px;
+                    width: 80px;
+                    border-radius: 50%;
+                    border: 4px solid rgb(0, 0, 0);
+                  "
+                  [src]="profilePic"
+                  *ngIf="profilePic"
+                />
+              </div>
+              <div>
+                <label class="file">
+                  <input
+                    style="border: 2px solid rgb(250, 230, 50)"
+                    type="text"
+                    type="file"
+                    id="file"
+                    (change)="selectFile($event)"
+                    aria-label="File browser example"
+                    formControlName="file"
+                  />
+                  <span class="file-custom"></span>
+                </label>
+              </div>
+              <br />
+              <div class="form-group">
+                <input
+                  style="border: 2px solid rgb(250, 230, 50)"
+                  [(ngModel)]="Productname"
+                  type="text"
+                  formControlName="Productname"
+                  class="form-control"
+                  placeholder=" Product Name *"
+                />
+              </div>
+              <br />
+              <div class="form-group">
+                <input
+                  style="border: 2px solid rgb(250, 230, 50)"
+                  [(ngModel)]="Productbrand"
+                  type="text"
+                  formControlName="Productbrand"
+                  class="form-control"
+                  placeholder="Product Brand *"
+                />
+              </div>
+              <br />
+              <div class="form-group">
+                <input
+                  style="border: 2px solid rgb(250, 230, 50)"
+                  [(ngModel)]="Productprice"
+                  type="text"
+                  formControlName="Productprice"
+                  class="form-control"
+                  placeholder=" Product Price *"
+                />
+              </div>
+              <br />
+              <div class="form-group">
+                <mat-form-field style="width: 100%" appearance="outline">
+                  <label style="font-size: 1rem; font-weight: 400; color: gray"
+                    >Choose a date</label
+                  >
+                  <input
+                    style="border: 2px solid rgb(250, 230, 50)"
+                    style="
+                      background: none;
+                      color: black;
+                      font-size: 18px;
+                      padding: 10px 10px 10px 5px;
+                      display: block;
+                      width: 320px;
+                      border: none;
+                      border-radius: 0;
+                      border-bottom: 1px solid #c6c6c6;
+                    "
+                    [(ngModel)]="date"
+                    formControlName="date"
+                    matInput
+                    [matDatepicker]="pickeryear"
+                    placeholder="Choose a date"
+                  />
+                  <mat-datepicker-toggle
+                    style="color: gray !important"
+                    [for]="pickeryear"
+                  >
+                  </mat-datepicker-toggle>
+                  <mat-datepicker
+                    color="accent"
+                    #pickeryear
+                    startView="year"
+                  ></mat-datepicker>
+                </mat-form-field>
+                <br />
+                <br />
+                <div class="form-group">
+                  <input
+                    style="border: 2px solid rgb(250, 230, 50)"
+                    [(ngModel)]="Productcategory"
+                    type="text"
+                    formControlName="Productcategory"
+                    class="form-control"
+                    placeholder="Product Category *"
+                  />
+                </div>
+                <br />
+                <div class="form-group">
+                  <textarea
+                    [(ngModel)]="Productdescription"
+                    style="width: 100%; border: 2px solid rgb(250, 230, 50)"
+                    formControlName="Productdescription"
+                    rows="4"
+                    cols="50"
+                    placeholder="Productdescription"
+                  ></textarea>
+                </div>
+                <br />
+                <!-- <div class="form-group">
+              <input
+                [(ngModel)]="Address"
+                type="text"
+                formControlName="Address"
+                class="form-control"
+                placeholder="Enter Your Address *"
+              />
+            </div> -->
+
+                <br />
+              </div>
+              <div style="display: flex; margin-left: 20px">
+                <button
+                  style="margin-right: 16px"
+                  [disabled]="!sellForm"
+                  (click)="addProduct()"
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Add Product
+                </button>
+                <button
+                  style="margin-right: 16px"
+                  [disabled]="!sellForm"
+                  (click)="updateProduct()"
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Update
+                </button>
+                <button
+                  style="margin-right: 16px"
+                  (click)="deleteForm()"
+                  type="button"
+                  class="btn btn-warning"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
