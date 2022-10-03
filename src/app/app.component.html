@@ -58,14 +58,25 @@
           </button>
         </li>
         <li style="margin-right: 16px">
-          <button
+          <!-- <button
             style="font-family: cursive"
             type="button"
             class="btn btn-light"
             (click)="sellMyProduct()"
           >
             Sell My Product
-          </button>
+          </button> -->
+          <div class="add-product">
+            <button
+              type="button"
+              class="btn btn-outline-success btn-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              #sellmyProduct
+            >
+              Sell My Product
+            </button>
+          </div>
         </li>
 
         <li style="margin-right: 25px">
@@ -98,7 +109,7 @@
           />
 
           <mat-menu #menu="matMenu">
-            <button mat-menu-item>Hello {{ userdata.fname }} !!</button>
+            <!-- <button mat-menu-item>Hello {{ userdata.fname }} !!</button> -->
             <button routerLink="/myprofile" mat-menu-item>MyProfile</button>
             <button routerLink="/viewallusers" mat-menu-item>View Users</button>
             <button (click)="userlogout()" mat-menu-item>Logout</button>
@@ -127,5 +138,333 @@
     </div>
   </div>
 </nav>
+
+<div class="products">
+  <div
+    class="row mt-4"
+    *ngFor="let product of productToDisplay; let ei = index"
+  >
+    <div class="col">
+      <app-home-page
+        [product]="product"
+        (onRemoveProduct)="removeProduct($event)"
+        (onEditProduct)="editProduct($event)"
+      ></app-home-page>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Enter Product Information
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <h1>
+          <form [formGroup]="sellForm">
+            <div
+              class="registerContents"
+              style="
+                border: 2px solid orange;
+                width: 330px;
+                padding: 20px;
+                border-radius: 30px;
+                text-align: center;
+                position: relative;
+              "
+            >
+              <h4 style="font-size: 20px">Enter Personal Information</h4>
+              <hr
+                style="
+                  height: 2px;
+                  border-width: 0;
+                  color: #000000;
+                  background-color: rgb(0, 0, 0);
+                "
+              />
+
+              <div class="row">
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First Name"
+                    formControlName="fname"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last Name"
+                    formControlName="lname"
+                  />
+                </div>
+              </div>
+
+              <!-- <div class="row">
+                <div class="col">
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Enter Your Email"
+                    formControlName="email"
+                  />
+                </div>
+                <div class="col">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Phone Number"
+                    formControlName="phone"
+                  />
+                </div>
+              </div> -->
+
+              <div style="margin-top: 20px; width: 100%" class="col-md-6">
+                <div style="margin-top: 20px; width: 260px">
+                  <br />
+                  <div class="form-group">
+                    <input
+                      style="border: 2px solid rgb(250, 230, 50)"
+                      type="text"
+                      formControlName="email"
+                      class="form-control"
+                      placeholder="Enter Your Email *"
+                    />
+                  </div>
+                  <br />
+                </div>
+                <div>
+                  <div style="width: 260px" class="form-group">
+                    <input
+                      style="border: 2px solid rgb(250, 230, 50)"
+                      type="text"
+                      formControlName="phoneno"
+                      class="form-control"
+                      placeholder="Enter Your Phone Number *"
+                    />
+                  </div>
+                  <br />
+                  <div style="width: 260px" class="form-group">
+                    <textarea
+                      style="width: 100%; border: 2px solid rgb(250, 230, 50)"
+                      formControlName="Address"
+                      id="w3review"
+                      name="w3review"
+                      rows="4"
+                      cols="50"
+                      placeholder="Enter Your Address *"
+                    ></textarea>
+                  </div>
+                  <br />
+                  <hr
+                    style="
+                      width: 260px;
+                      height: 2px;
+                      border-width: 0;
+                      color: rgb(0, 0, 0);
+                      background-color: rgb(0, 0, 0);
+                    "
+                  />
+                  <h4 style="font-size: 20px; width: 260px">
+                    Enter Product Details
+                  </h4>
+                  <hr
+                    style="
+                      width: 260px;
+                      height: 2px;
+                      border-width: 0;
+                      color: rgb(0, 0, 0);
+                      background-color: rgb(0, 0, 0);
+                    "
+                  />
+                  <br />
+                  <div style="text-align: center; width: 260px">
+                    <div *ngIf="message">
+                      {{ message }}
+                    </div>
+                    <div>
+                      <img
+                        (change)="selectFile($event)"
+                        style="
+                          height: 80px;
+                          width: 80px;
+                          margin-top: -20px;
+                          cursor: pointer;
+                        "
+                        type="file"
+                        id="file"
+                        src="../assets/Img/camera.png"
+                        *ngIf="!profilePic"
+                      />
+                    </div>
+                    <div>
+                      <img
+                        style="
+                          height: 80px;
+                          width: 80px;
+                          border-radius: 50%;
+                          border: 4px solid rgb(0, 0, 0);
+                        "
+                        [src]="profilePic"
+                        *ngIf="profilePic"
+                      />
+                    </div>
+                    <div>
+                      <label class="file">
+                        <input
+                          style="border: 2px solid rgb(250, 230, 50)"
+                          type="text"
+                          type="file"
+                          id="file"
+                          #fileInput
+                          (change)="selectFile($event)"
+                          aria-label="File browser example"
+                          formControlName="file"
+                        />
+                        <span class="file-custom"></span>
+                      </label>
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <input
+                        style="border: 2px solid rgb(250, 230, 50)"
+                        type="text"
+                        formControlName="Productname"
+                        class="form-control"
+                        placeholder=" Product Name *"
+                      />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <input
+                        style="border: 2px solid rgb(250, 230, 50)"
+                        type="text"
+                        formControlName="Productbrand"
+                        class="form-control"
+                        placeholder="Product Brand *"
+                      />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <input
+                        style="border: 2px solid rgb(250, 230, 50)"
+                        type="text"
+                        formControlName="Productprice"
+                        class="form-control"
+                        placeholder=" Product Price *"
+                      />
+                    </div>
+                    <br />
+                    <div class="form-group">
+                      <div class="col">
+                        <label for="datepicker" class="form-label">Date</label>
+                        <input
+                          type="date"
+                          class="form-control"
+                          id="datepicker"
+                          formControlName="date"
+                        />
+                      </div>
+                      <br />
+                      <br />
+                      <div class="form-group">
+                        <input
+                          style="border: 2px solid rgb(250, 230, 50)"
+                          type="text"
+                          formControlName="Productcategory"
+                          class="form-control"
+                          placeholder="Product Category *"
+                        />
+                      </div>
+                      <br />
+                      <div class="form-group">
+                        <textarea
+                          style="
+                            width: 100%;
+                            border: 2px solid rgb(250, 230, 50);
+                          "
+                          formControlName="Productdescription"
+                          rows="4"
+                          cols="50"
+                          placeholder="Productdescription"
+                        ></textarea>
+                      </div>
+                      <br />
+                      <!-- <div class="form-group">
+                  <input
+                    [(ngModel)]="Address"
+                    type="text"
+                    formControlName="Address"
+                    class="form-control"
+                    placeholder="Enter Your Address *"
+                  />
+                </div> -->
+
+                      <br />
+                    </div>
+                    <div style="display: flex; margin-left: 20px">
+                      <!-- <button
+                        style="margin-right: 16px"
+                        [disabled]="!sellForm"
+                        (click)="addProduct()"
+                        type="button"
+                        class="btn btn-warning"
+                      >
+                        Add Product
+                      </button> -->
+                      <div class="modal-footer">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          data-bs-dismiss="modal"
+                          (click)="addProduct()"
+                        >
+                          Insert
+                        </button>
+                      </div>
+                      <button
+                        style="margin-right: 16px"
+                        [disabled]="!sellForm"
+                        (click)="updateProduct()"
+                        type="button"
+                        class="btn btn-warning"
+                      >
+                        Update
+                      </button>
+                      <button
+                        style="margin-right: 16px"
+                        (click)="deleteForm()"
+                        type="button"
+                        class="btn btn-warning"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </h1>
+      </div>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>

@@ -5,13 +5,12 @@ export class Product {
   lname: string = '';
   Address: string = '';
   phoneno: number = 0;
-  profilePic: string = '';
   Productname: string = '';
   Productbrand: string = '';
   Productprice: number = 0;
-  pickeryear: number = 0;
   Productcategory: string = '';
   Productdescription: string = '';
   file: string = '';
-  date: number = 0;
+  date: string = '';
+  showEditOption: boolean = false;
 }

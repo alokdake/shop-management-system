@@ -58,7 +58,7 @@ export class LoginPageComponent implements OnInit {
   submitForm() {
     console.log(this.loginForm.value);
     this.noResultReturned = true;
-    this.http.get<any>(' http://localhost:6000/registeredUsers').subscribe(
+    this.http.get<any>(' http://localhost:9000/registeredUsers').subscribe(
       (result: any[]) => {
         console.log(result);
         const user = result.find((x: any) => {
@@ -71,6 +71,7 @@ export class LoginPageComponent implements OnInit {
         if (user) {
           this.noResultReturned = false;
           this.toastr.success('Login Succussful');
+          // localStorage.setItem('userData', JSON.stringify(user));
           localStorage.setItem('userData', JSON.stringify(user));
           this.router.navigate(['/homePage']);
         } else {

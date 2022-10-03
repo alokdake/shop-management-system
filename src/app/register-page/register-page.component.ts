@@ -77,13 +77,12 @@ export class RegisterPageComponent implements OnInit {
       phoneno: this.phoneno,
       profilePic: this.profilePic,
     };
-
     console.log(registerModel);
 
     // this.registerDetails = this.RegisterForm.value;
     // console.log(this.registerDetails);
 
-    this.http.get<any>(' http://localhost:6000/registeredUsers').subscribe(
+    this.http.get<any>(' http://localhost:9000/registeredUsers').subscribe(
       (result) => {
         console.log(result);
         const user = result.find((x: any) => {
@@ -94,7 +93,7 @@ export class RegisterPageComponent implements OnInit {
           this.toastr.warning('User Already Exists');
         } else {
           this.http
-            .post<any>(' http://localhost:6000/registeredUsers', registerModel)
+            .post<any>(' http://localhost:9000/registeredUsers', registerModel)
             .subscribe((result) => {
               this.toastr.success('Register Successful');
               console.log(result);

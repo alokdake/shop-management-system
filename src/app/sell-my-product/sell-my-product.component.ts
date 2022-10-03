@@ -35,6 +35,7 @@ export class SellMyProductComponent implements OnInit {
   selectedYear: any;
   userdata: any;
   loggedInUserEmail: any;
+  showEditOption: boolean = false;
   constructor(
     private MyDB: ShopdbService,
     private formBuilder: FormBuilder,
@@ -86,7 +87,7 @@ export class SellMyProductComponent implements OnInit {
     console.log(this.userdata);
     this.loggedInUserEmail = this.userdata.email;
     console.log(this.loggedInUserEmail);
-    this.productId = JSON.parse(localStorage.getItem('id') || '{}');
+    this.productId = JSON.parse(localStorage.getItem('item') || '{}');
     console.log(this.productId);
     this.onEdit();
 
@@ -123,13 +124,14 @@ export class SellMyProductComponent implements OnInit {
       Productdescription: this.Productdescription,
       file: this.file,
       date: this.date,
+      showEditOption: this.showEditOption,
     };
 
     console.log(sellModel);
 
     if (this.loggedInUserEmail === this.sellForm.value.email) {
       this.http
-        .post<any>('http://localhost:6000/allProducts', sellModel)
+        .post<any>('http://localhost:9000/allProducts', sellModel)
         .subscribe((result) => {
           this.toastr.success('Product Added sucessfully');
           console.log(result);
@@ -174,11 +176,11 @@ export class SellMyProductComponent implements OnInit {
   }
 
   updateProduct() {
-    this.MyDB.updateProductDetails(
-      this.productId,
-      this.sellForm.value
-    ).subscribe((result: any[]) => {
-      console.log(result);
-    });
+    // this.MyDB.updateProductDetails(
+    //   this.productId,
+    //   this.sellForm.value
+    // ).subscribe((result: any[]) => {
+    //   console.log(result);
+    // });
   }
 }

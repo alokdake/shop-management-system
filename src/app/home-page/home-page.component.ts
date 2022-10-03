@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ShopdbService } from '../shopdb.service';
 import { ViewproductdetailsComponent } from '../viewproductdetails/viewproductdetails.component';
-import {
-  MatDialog,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from '../model/product.model';
+import { outputAst } from '@angular/compiler';
 
 @Component({
   selector: 'app-home-page',
@@ -17,10 +14,15 @@ import { Product } from '../model/product.model';
   styleUrls: ['./home-page.component.scss'],
 })
 export class HomePageComponent implements OnInit {
+  @Input()
+  product: Product = new Product();
+
+  @Output() onRemoveProduct = new EventEmitter<number>();
+  @Output() onEditProduct = new EventEmitter<number>();
+
   shopData: any = [];
   userdata: any;
   showImage!: boolean;
-
   productEmail: any;
   loggedInUserEmail: any;
   constructor(
@@ -28,7 +30,23 @@ export class HomePageComponent implements OnInit {
     public dialog: MatDialog,
     private tostr: ToastrService,
     private MyDB: ShopdbService
-  ) {}
+  ) {
+    this.product = {
+      email: '',
+      fname: '',
+      lname: '',
+      Address: '',
+      phoneno: 0,
+      Productname: '',
+      Productbrand: '',
+      Productprice: 0,
+      Productcategory: '',
+      Productdescription: '',
+      file: '',
+      date: '',
+      showEditOption: false,
+    };
+  }
 
   ngOnInit(): void {
     this.userdata = JSON.parse(localStorage.getItem('userData') || '{}');
@@ -36,6 +54,8 @@ export class HomePageComponent implements OnInit {
     this.loggedInUserEmail = this.userdata.email;
     console.log(this.loggedInUserEmail);
     this.getShopDetails();
+
+    console.log(this.product);
   }
 
   getShopDetails() {
@@ -63,9 +83,17 @@ export class HomePageComponent implements OnInit {
     this.router.navigate(['/viewproductdetails']);
   }
 
-  editProduct(item: any) {
-    console.log(item);
-    localStorage.setItem('id', JSON.stringify(item));
-    this.router.navigate(['/sellMyProduct']);
+  editSingleProduct() {
+    this.onEditProduct.emit(this.product.id);
   }
+
+  deleteSingleProduct() {
+    this.onRemoveProduct.emit(this.product.id);
+  }
+
+  // editProduct() {
+  //   // console.log(item);
+  //   // localStorage.setItem('item', JSON.stringify(item));
+  //   // this.router.navigate(['/sellMyProduct']);
+  // }
 }

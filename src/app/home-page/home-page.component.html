@@ -1,32 +1,25 @@
 <div class="container">
   <div style="padding: 10px" class="row">
-    <div
-      *ngFor="let item of shopData"
-      class="card"
-      style="width: 18rem; margin-left: 20px; margin-top: 20px"
-    >
+    <div class="card" style="width: 18rem; margin-left: 20px; margin-top: 20px">
       <div class="card-body">
         <img
           style="object-fit: cover"
           class="card-img-top"
-          src="{{ item.profilePic }}"
+          src="{{ product.file }}"
           alt="Card image cap"
         />
         <div class="card-body">
-          <h2 class="card-title">{{ item.Productname }}</h2>
-          <h3 class="card-title">{{ item.fname }} {{ item.lname }}</h3>
-          <h3 class="card-text">{{ item.Productcategory }}</h3>
+          <h2 class="card-title">{{ product.Productname }}</h2>
+          <h3 class="card-title">{{ product.fname }} {{ product.lname }}</h3>
+          <h3 class="card-text">{{ product.Productcategory }}</h3>
+          <h3 class="card-text">{{ product.Productprice }}</h3>
 
-          <br />
-          <a (click)="viewDetails(item)" class="btn btn-primary">View</a>
+          <a (click)="viewDetails(product)" class="btn btn-primary">View</a>
 
-          <div
-            style="margin-left: 50px; margin-top: -30px"
-            *ngIf="item.showEditOption"
-          >
+          <div style="margin-left: 50px; margin-top: -30px">
             <i class="bi bi-pencil-fill"></i>
             <svg
-              (click)="editProduct(item.id)"
+              (click)="editSingleProduct()"
               xmlns="http://www.w3.org/2000/svg"
               style="margin-left: 20px; cursor: pointer"
               width="16"
@@ -41,6 +34,7 @@
             </svg>
             <i class="bi bi-trash3-fill"></i>
             <svg
+              (click)="deleteSingleProduct()"
               xmlns="http://www.w3.org/2000/svg"
               style="margin-left: 20px; cursor: pointer"
               width="16"
@@ -59,81 +53,3 @@
     </div>
   </div>
 </div>
-
-<!-- <ul class="cards">
-  <li class="cards__item">
-    <div class="card">
-      <div class="card__image card__image--fence"></div>
-      <div class="card__content">
-        <div class="card__title">Flex</div>
-        <p class="card__text">
-          This is the shorthand for flex-grow, flex-shrink and flex-basis
-          combined. The second and third parameters (flex-shrink and flex-basis)
-          are optional. Default is 0 1 auto.
-        </p>
-        <button class="btn btn--block card__btn">Button</button>
-      </div>
-    </div>
-  </li>
-  -->
-<!-- <li class="cards__item">
-    <div class="card">
-      <div class="card__image card__image--river"></div>
-      <div class="card__content">
-        <div class="card__title">Flex Grow</div>
-        <p class="card__text">
-          This defines the ability for a flex item to grow if necessary. It
-          accepts a unitless value that serves as a proportion. It dictates what
-          amount of the available space inside the flex container the item
-          should take up.
-        </p>
-        <button class="btn btn--block card__btn">Button</button>
-      </div>
-    </div>
-  </li>
-  <li class="cards__item">
-    <div class="card">
-      <div class="card__image card__image--record"></div>
-      <div class="card__content">
-        <div class="card__title">Flex Shrink</div>
-        <p class="card__text">
-          This defines the ability for a flex item to shrink if necessary.
-          Negative numbers are invalid.
-        </p>
-        <button class="btn btn--block card__btn">Button</button>
-      </div>
-    </div>
-  </li>
-  <li class="cards__item">
-    <div class="card">
-      <div class="card__image card__image--flowers"></div>
-      <div class="card__content">
-        <div class="card__title">Flex Basis</div>
-        <p class="card__text">
-          This defines the default size of an element before the remaining space
-          is distributed. It can be a length (e.g. 20%, 5rem, etc.) or a
-          keyword. The auto keyword means "look at my width or height property."
-        </p>
-        <button class="btn btn--block card__btn">Button</button>
-      </div>
-    </div>
-  </li>
-</ul> -->
-
-<!-- <div *ngFor="let item of shopData" class="card" style="width: 18rem">
-  <div (click)="openDialog(item)" class="card-body">
-    <img
-      class="card-img-top"
-      src="{{ item.profilePic }}"
-      alt="Card image cap"
-    />
-    <h2 class="card-title">{{ item.Productname }}</h2>
-    <p class="card-text">{{ item.fname }}</p>
-    <span class="badge rounded-pill bg-primary">{{
-      item.Productcategory
-    }}</span>
-    <br />
-    <br />
-    <a class="btn btn-primary">View</a>
-  </div>
-</div> -->

@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Product } from './model/product.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShopdbService {
-  shopUrl = 'http://localhost:6000/allProducts';
-  registerUrl = 'http://localhost:6000/registeredUsers';
+  shopUrl = 'http://localhost:9000/allProducts';
+  registerUrl = 'http://localhost:9000/registeredUsers';
   apiUrl!: string;
 
   constructor(public http: HttpClient) {}
@@ -21,18 +22,22 @@ export class ShopdbService {
     return this.http.get<any>(this.shopUrl);
   }
 
+  addProducts(product: Product) {
+    return this.http.post<Product>(this.shopUrl, product);
+  }
+
   getAllUsers() {
     let header = new HttpHeaders();
     return this.http.get<any>(this.registerUrl);
   }
-  updateProductDetails(id: any, value: any) {
-    return this.http.put<any>(this.shopUrl + id, value);
+  updateProductDetails() {
+    // return this.http.put<any>(this.shopUrl + id, value);
   }
 
   postRegisteredDetails(registerModel: any) {
     console.log(registerModel);
     return this.http.post<any>(
-      'http://localhost:6000/registeredUser',
+      'http://localhost:9000/registeredUser',
       registerModel
     );
   }
